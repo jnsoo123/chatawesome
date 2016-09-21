@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Chatrooms</h1>
+
+  <ul>
+    <% @chatrooms.each do |chatroom| %>
+      <li><%=link_to chatroom.topic, chatroom_path(chatroom) %></li>
+    <% end %>
+  </ul>
+
+  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+</div>
