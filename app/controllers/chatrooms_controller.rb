@@ -16,7 +16,11 @@ class ChatroomsController < ApplicationController
   def create
     @chatroom = Chatroom.new(chatroom_params)
     if @chatroom.save
-      redirect_to chatrooms_path
+      ActionCable.server.broadcast 'chatgroups',
+        channel: @chatroom.topic,
+        id: @chatroom.id,
+        user_count: @chatroom.users.uniq.count
+      redirect_to root_path
     else
       flash[:error] = @chatroom.errors.full_messages.join(',')
       render :new
