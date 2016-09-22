@@ -6,7 +6,8 @@ class MessagesController < ApplicationController
     if message.save
       ActionCable.server.broadcast 'messages',
         message: message.body,
-        user: message.user.email
+        user: message.user.email,
+        topic: message.chatroom.topic
       head :ok
     else
       redirect_to chatrooms_path

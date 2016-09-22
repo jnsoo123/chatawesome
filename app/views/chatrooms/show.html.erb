@@ -3,11 +3,11 @@
   <h2><%= @chatroom.topic %></h2>
   <div class="panel panel-default">
     <% if @chatroom.messages.any? %>
-      <div class="panel-body" id="messages">
+      <div class="panel-body" id="messages_<%= @chatroom.topic %>">
         <%= render partial: 'messages/message', collection: @chatroom.messages, as: :message %>
       </div>
     <% else %>
-      <div class="panel-body hidden" id="messages">
+      <div class="panel-body hidden" id="messages_<%= @chatroom.topic %>">
       </div>
     <% end %>
   </div>
