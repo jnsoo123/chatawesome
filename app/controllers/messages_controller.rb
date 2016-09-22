@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
     if message.save
       ActionCable.server.broadcast 'messages',
         message: message.body,
-        user: message.user.email,
+        user: message.user.name,
         topic: message.chatroom.topic
       head :ok
     else
