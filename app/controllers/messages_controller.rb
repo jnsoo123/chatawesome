@@ -7,7 +7,8 @@ class MessagesController < ApplicationController
       ActionCable.server.broadcast 'messages',
         message: message.body,
         user: message.user.name,
-        topic: message.chatroom.topic
+        topic: message.chatroom.topic,
+        user_id: message.user.id
       head :ok
     else
       redirect_to chatrooms_path

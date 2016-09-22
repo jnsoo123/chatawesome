@@ -1,6 +1,6 @@
 <%= form_for message, remote: true, authenticity_token: true do |f| %>
   <%= f.label :your_message %>:
-  <%= f.text_field :body, class: "form-control", id: 'message_field', autocomplete: :off, required: true %>
+  <%= f.text_field :body, class: "form-control", id: "message_field_#{current_user.id}", autocomplete: :off, required: true %>
 
   <%= f.hidden_field :chatroom_id, value: chatroom.id %>
 <%end%>
