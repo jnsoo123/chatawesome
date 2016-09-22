@@ -1,4 +1,4 @@
-$(document).on("ready page:change", function() {
+$(document).on('turbolinks:load', function() {
   msgBox = $('#messages')
   msgBox.animate({
       scrollTop: $('#messages')[0].scrollHeight
