@@ -1,5 +1,4 @@
-<div class="container">
-  <h2><%= link_to "#{icon('angle-left')} Back".html_safe, chatrooms_path, class: 'text-muted' %></h2>
+<div class="container" style="max-width: 500px;">
   <h2><%= @chatroom.topic %></h2>
   <div class="panel panel-default">
     <% if @chatroom.messages.any? %>

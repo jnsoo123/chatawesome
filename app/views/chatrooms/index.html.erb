@@ -1,11 +1,11 @@
-<div class="container" style="max-width: 500px;">
+<div class="container" style="max-width: 500px; margin-top: 10px;">
   <div class="well">
     <h3 class="text-center">Chatrooms</h3>
     <div class="row">
       <div id="all_channels">
         <% @chatrooms.each do |chatroom| %>
           <div class="col-xs-12" style="margin-bottom: 5px;">
-            <%= link_to "##{chatroom.topic}(#{chatroom.users.uniq.count})", chatroom_path(chatroom), class: 'btn btn-default btn-lg', style: 'width: 100%;' %>
+            <%= link_to "##{chatroom.topic} ( #{chatroom.users.uniq.count} #{icon('user')} )".html_safe, chatroom_path(chatroom), class: 'btn btn-primary btn-primary', style: 'width: 100%;' %>
           </div>
         <% end %>
       </div>
@@ -14,5 +14,4 @@
       </div>
     </div>
   </div>
-  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
 </div>
