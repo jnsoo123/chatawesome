@@ -10,6 +10,11 @@
     <%= form_for(@chatroom, url: chatrooms_path) do |f| %>
       <div class="form-group">
         <%= f.text_field :topic, autofocus: true, class: 'form-control', placeholder: 'Channel Name' %>
+    	  <div class="checkbox">
+          <label>
+	          <%= f.check_box :is_private %> Set Private
+          </label>
+	      </div>
       </div>
       <div class="form-group">
         <%= f.submit 'Create Channel', class: 'btn btn-success', style: 'width: 100%;' %>
