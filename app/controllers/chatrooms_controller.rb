@@ -13,6 +13,9 @@ class ChatroomsController < ApplicationController
     @message = Message.new
   end
 
+  def show_locked
+  end
+
   def create
     @chatroom = Chatroom.new(chatroom_params)
     if @chatroom.save
