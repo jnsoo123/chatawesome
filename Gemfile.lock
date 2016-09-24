@@ -177,6 +177,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt
   bootstrap-sass
   bootswatch-rails
   byebug
@@ -199,4 +200,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.12.2
+   1.12.5
