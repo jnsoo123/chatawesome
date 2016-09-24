@@ -1,5 +1,8 @@
 class ChatroomsController < ApplicationController
 
+  respond_to :html
+  respond_to :js, only: :show_locked
+
   def index
     @chatrooms = Chatroom.all
   end
