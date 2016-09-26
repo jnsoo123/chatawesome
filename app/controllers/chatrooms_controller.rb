@@ -23,8 +23,10 @@ class ChatroomsController < ApplicationController
   def show_with_password
     @chatroom = Chatroom.find(params[:id].to_i).authenticate(params[:password])
     if @chatroom
+      session[:chatroom_access] = @chatroom.id
       redirect_to chatroom_path(@chatroom)
     else
+      session[:chatroom_access] = nil
       redirect_to root_path, flash: { alert: 'Incorrect password' }
     end
   end

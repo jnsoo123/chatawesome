@@ -1,14 +1,11 @@
 <div class="container" style="max-width: 500px;">
-  <h2><%= @chatroom.topic %></h2>
-  <div class="panel panel-default">
-    <% if @chatroom.messages.any? %>
-      <div class="panel-body messages" id="messages_<%= @chatroom.topic %>">
-        <%= render partial: 'messages/message', collection: @chatroom.messages.sort, as: :message %>
-      </div>
+  <% if @chatroom.is_private? %>
+    <% if session[:chatroom_access] == @chatroom.id %>
+      <%= render partial: 'open_chatroom', locals: { chatroom: @chatroom, message: @message } %>
     <% else %>
-      <div class="panel-body hidden messages" id="messages_<%= @chatroom.topic %>">
-      </div>
+      <%= render partial: 'close_chatroom' %>
     <% end %>
-  </div>
-  <%= render partial: 'messages/message_form', locals: {message: @message, chatroom: @chatroom} %>
+  <% else %>
+    <%= render partial: 'open_chatroom', locals: { chatroom: @chatroom, message: @message } %> 
+  <% end %>
 </div>
