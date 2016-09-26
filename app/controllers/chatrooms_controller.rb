@@ -1,7 +1,7 @@
 class ChatroomsController < ApplicationController
 
   respond_to :html
-  respond_to :js, only: :show_locked
+  respond_to :js, only: :check_password
 
   def index
     @chatrooms = Chatroom.all
@@ -16,7 +16,17 @@ class ChatroomsController < ApplicationController
     @message = Message.new
   end
 
-  def show_locked
+  def check_password
+    @chatroom = Chatroom.find(params[:id].to_i)
+  end
+
+  def show_with_password
+    @chatroom = Chatroom.find(params[:id].to_i).authenticate(params[:password])
+    if @chatroom
+      redirect_to chatroom_path(@chatroom)
+    else
+      redirect_to root_path, flash: { alert: 'Incorrect password' }
+    end
   end
 
   def create

@@ -1,0 +1,23 @@
+<div class="modal fade" id="chatroom_modal" tabindex='-1' role='dialog' aria-labelledby='chatroom_modal'>
+  <div class="modal-dialog modal-sm" role='document'>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type='button' class='close' data-dismiss='modal' aria-label='close'>
+          <span aria-hidden='true'>&times;</span>
+        </button>
+        <h4 class="modal-title">#<%= chatroom.topic %> is locked</h4>
+      </div>
+      <%= form_tag check_chatroom_password_path(chatroom) do %>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= password_field_tag :password, nil, class: 'form-control', placeholder: 'Enter Password', autofocus: true %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type='button' class='btn btn-default btn-sm' data-dismiss='modal'>Cancel</button>
+          <%= submit_tag 'Go', class: 'btn btn-primary btn-sm' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
