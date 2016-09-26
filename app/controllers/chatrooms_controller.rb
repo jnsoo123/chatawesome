@@ -1,4 +1,5 @@
 class ChatroomsController < ApplicationController
+  before_action :set_chatroom, only: [:show, :check_password, :show_with_password]
 
   respond_to :html
   respond_to :js, only: :check_password
@@ -12,17 +13,14 @@ class ChatroomsController < ApplicationController
   end
 
   def show
-    @chatroom = Chatroom.find(params[:id].to_i)
     @message = Message.new
   end
 
   def check_password
-    @chatroom = Chatroom.find(params[:id].to_i)
   end
 
   def show_with_password
-    @chatroom = Chatroom.find(params[:id].to_i).authenticate(params[:password])
-    if @chatroom
+    if @chatroom.authenticate(params[:password])
       session[:chatroom_access] = @chatroom.id
       redirect_to chatroom_path(@chatroom)
     else
@@ -49,6 +47,10 @@ class ChatroomsController < ApplicationController
   end
 
   private
+
+  def set_chatroom
+    @chatroom = Chatroom.find(params[:id].to_i)
+  end
 
   def chatroom_params
     params.require(:chatroom).permit(:topic, :is_private, :password)
