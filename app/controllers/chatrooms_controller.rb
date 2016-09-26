@@ -51,6 +51,6 @@ class ChatroomsController < ApplicationController
   private
 
   def chatroom_params
-    params.require(:chatroom).permit(:topic, :is_private)
+    params.require(:chatroom).permit(:topic, :is_private, :password)
   end
 end
