@@ -27,7 +27,7 @@ class ChatroomsController < ApplicationController
       redirect_to chatroom_path(@chatroom)
     else
       session[:chatroom_access] = nil
-      redirect_to root_path, flash: { alert: 'Incorrect password' }
+      redirect_to :back, flash: { alert: 'Incorrect password' }
     end
   end
 
