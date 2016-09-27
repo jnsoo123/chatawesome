@@ -31,6 +31,7 @@ class ChatroomsController < ApplicationController
 
   def create
     @chatroom = Chatroom.new(chatroom_params)
+    @chatroom.user = current_user
     if @chatroom.save
       ActionCable.server.broadcast 'chatgroups',
         channel: @chatroom.topic,
