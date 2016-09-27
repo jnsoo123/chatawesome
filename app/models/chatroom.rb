@@ -1,17 +1,18 @@
 class Chatroom < ApplicationRecord
-  has_secure_password(validations: false)
+  has_secure_password validations: false, if: :skip_password_validation
   
   has_many :messages, dependent: :destroy
   has_many :users, through: :messages
 
   validates :topic, presence: true, uniqueness: true, case_sensitive: false
-  validates_confirmation_of :password, if: :password_present?
-  validates_presence_of :password, on: :create, if: :is_private?
-
+  
+  def not_private(state)
+    @not_private = true if state
+  end
+  
   private
-
-  def password_present?
-    puts password.present?
-    password.present?
+  
+  def skip_password_validation
+    true if @not_private
   end
 end
