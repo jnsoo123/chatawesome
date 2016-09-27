@@ -1,11 +1,8 @@
-<div class="well" style='margin-top: 20px;'>
-  <h2 class="text-center">Chatroom is LOCKED</h2>
-  <h1 class="text-center">
-    <%= icon('lock',nil, style: 'font-size: 90px;') %>
-  </h1>
-  <div class="text-center">
-    <%= link_to 'Enter Password', chatroom_locked_path, class: 'btn btn-primary btn-lg', remote: true %>
-  </div>
+<h2 class="text-center">Chatroom is LOCKED</h2>
+<h1 class="text-center">
+  <%= icon('lock',nil, style: 'font-size: 90px;') %>
+</h1>
+<div class="text-center">
+  <%= link_to 'Enter Password', chatroom_locked_path, class: 'btn btn-primary btn-lg', remote: true %>
 </div>
 <div id="show_modal"></div>
-
