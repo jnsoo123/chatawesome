@@ -1,12 +1,14 @@
 <div class="clearfix">
   <div class="pull-left">
-    <h4><%= chatroom.topic %></h4>
+    <h4 class="text-muted">#<%= chatroom.topic %></h4>
   </div>
   <div class="pull-right">
-    <h4>
-      <%= link_to "#{icon('pencil-square-o', 'Rename')}".html_safe, edit_chatroom_path(chatroom), class: 'btn btn-info btn-xs', remote: true %>
-      <%= link_to "#{icon('trash-o', 'Delete')}".html_safe, chatroom_path(chatroom), method: :delete, class: 'btn btn-danger btn-xs', data: { confirm: "Are you sure you want to delete #{chatroom.topic} chatroom?"} if can? :destroy, chatroom %>
-    </h4>
+    <% if can? :destroy, chatroom %>
+      <h4>
+        <%= link_to "#{icon('pencil-square-o', 'Rename')}".html_safe, edit_chatroom_path(chatroom), class: 'btn btn-info btn-xs', remote: true %>
+        <%= link_to "#{icon('trash-o', 'Delete')}".html_safe, chatroom_path(chatroom), method: :delete, class: 'btn btn-danger btn-xs', data: { confirm: "Are you sure you want to delete #{chatroom.topic} chatroom?"} %>
+      </h4>
+    <% end %>
   </div>
 </div>
 

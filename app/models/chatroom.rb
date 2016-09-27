@@ -7,6 +7,7 @@ class Chatroom < ApplicationRecord
   belongs_to :user
 
   validates :topic, presence: true, uniqueness: true, case_sensitive: false
+  validates :password, length: { minimum: 6 }, unless: :skip_password_validation, on: :create
 
   def not_private(state)
     @not_private = true if state
