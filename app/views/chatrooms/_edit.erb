@@ -1,0 +1,23 @@
+<div class="modal fade" id="edit_chatroom_modal" tabindex='-1' role='dialog' aria-labelledby='chatroom_modal'>
+  <div class="modal-dialog" role='document'>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type='button' class='close' data-dismiss='modal' aria-label='close'>
+          <span aria-hidden='true'>&times;</span>
+        </button>
+        <h4 class="modal-title">Rename #<%= @chatroom.topic %> chatroom</h4>
+      </div>
+      <%= form_for(@chatroom, url: chatroom_path(@chatroom), method: :put) do |f| %>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= f.text_field :topic, class: 'form-control', placeholder: 'Enter update chatroom name' %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type='button' class='btn btn-default btn-sm' data-dismiss='modal'>Cancel</button>
+          <%= submit_tag 'Update Chatroom', class: 'btn btn-primary btn-sm' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

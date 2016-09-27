@@ -1,10 +1,10 @@
 class ChatroomsController < ApplicationController
   load_and_authorize_resource
 
-  before_action :set_chatroom, only: [:show, :check_password, :show_with_password, :destroy]
+  before_action :set_chatroom, only: [:show, :check_password, :show_with_password, :destroy, :edit, :update]
 
   respond_to :html
-  respond_to :js, only: :check_password
+  respond_to :js, only: [:check_password, :edit]
 
   def index
     @chatrooms = Chatroom.all
@@ -22,6 +22,10 @@ class ChatroomsController < ApplicationController
   end
 
   def update
+    if @chatroom.update_attributes(chatroom_params)
+      flash[:notice] = 'Chatroom updated successfully'
+      respond_with(@chatroom)
+    end
   end
 
   def check_password
