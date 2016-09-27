@@ -6,6 +6,7 @@ class Ability
       can :read, :all
       can :destroy, Chatroom, user_id: user.id
       can :update, Chatroom, user_id: user.id
+      can :edit_password, Chatroom, user_id: user.id
       can :check_password, Chatroom
       can :show_with_password, Chatroom
       can :create, Chatroom
