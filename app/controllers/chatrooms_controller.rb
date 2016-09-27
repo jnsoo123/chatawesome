@@ -18,6 +18,12 @@ class ChatroomsController < ApplicationController
     @message = Message.new
   end
 
+  def edit
+  end
+
+  def update
+  end
+
   def check_password
   end
 
