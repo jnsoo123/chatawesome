@@ -1,5 +1,7 @@
 class ChatroomsController < ApplicationController
-  before_action :set_chatroom, only: [:show, :check_password, :show_with_password]
+  load_and_authorize_resource
+
+  before_action :set_chatroom, only: [:show, :check_password, :show_with_password, :destroy]
 
   respond_to :html
   respond_to :js, only: :check_password
@@ -31,7 +33,7 @@ class ChatroomsController < ApplicationController
 
   def create
     @chatroom = Chatroom.new(chatroom_params)
-    @chatroom.topic.gsub!(' ','_').downcase!
+    @chatroom.topic.gsub!(' ','_').downcase! if @chatroom.topic.include?(' ')
     @chatroom.user = current_user
     if @chatroom.save
       ActionCable.server.broadcast 'chatgroups',
@@ -46,6 +48,7 @@ class ChatroomsController < ApplicationController
   end
 
   def destroy
+    redirect_to root_path, flash: { notice: "Chatroom ##{@chatroom.topic} is successfully deleted." } if @chatroom.destroy
   end
 
   private
