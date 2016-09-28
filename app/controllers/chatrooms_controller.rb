@@ -1,7 +1,7 @@
 class ChatroomsController < ApplicationController
   load_and_authorize_resource
 
-  before_action :set_chatroom, only: [:show, :check_password, :show_with_password, :destroy, :edit, :update, :edit_password]
+  before_action :set_chatroom, only: [:show, :check_password, :show_with_password, :destroy, :edit, :update, :edit_password, :update_password]
 
   respond_to :html
   respond_to :js, only: [:check_password, :edit, :edit_password]
@@ -30,6 +30,18 @@ class ChatroomsController < ApplicationController
     if @chatroom.save
       flash[:notice] = 'Chatroom updated successfully'
       respond_with(@chatroom)
+    end
+  end
+
+  def update_password
+    if @chatroom.authenticate(params[:old_password])
+      if @chatroom.update_attributes(change_chatroom_password_params)
+        redirect_to @chatroom, flash: { notice: "Chatroom password changed successfully" }
+      else
+        redirect_to @chatroom, flash: { alert: "Passwords does not match." }
+      end
+    else
+      redirect_to @chatroom, flash: { alert: "Password Incorrect." }
     end
   end
 
@@ -74,5 +86,9 @@ class ChatroomsController < ApplicationController
 
   def chatroom_params
     params.require(:chatroom).permit(:topic, :is_private, :password)
+  end
+
+  def change_chatroom_password_params
+    params.require(:chatroom).permit(:password, :password_confirmation)
   end
 end
