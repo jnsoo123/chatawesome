@@ -2,7 +2,9 @@
   <h4 class="text-muted">#<%= chatroom.topic %></h4>
   <% if can? :destroy, chatroom %>
     <h4>
-      <%= link_to "#{icon('lock', 'Change Password')}".html_safe, edit_chatroom_password_path(chatroom), class: 'btn btn-warning btn-xs', remote: true %>
+      <% if chatroom.is_private? %>
+        <%= link_to "#{icon('lock', 'Change Password')}".html_safe, edit_chatroom_password_path(chatroom), class: 'btn btn-warning btn-xs', remote: true %>
+      <% end %>
       <%= link_to "#{icon('pencil-square-o', 'Rename')}".html_safe, edit_chatroom_path(chatroom), class: 'btn btn-info btn-xs', remote: true %>
       <%= link_to "#{icon('trash-o', 'Delete')}".html_safe, chatroom_path(chatroom), method: :delete, class: 'btn btn-danger btn-xs', data: { confirm: "Are you sure you want to delete #{chatroom.topic} chatroom?"} %>
     </h4>
