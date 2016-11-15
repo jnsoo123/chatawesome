@@ -66,7 +66,8 @@ class ChatroomsController < ApplicationController
       ActionCable.server.broadcast 'chatgroups',
         channel: @chatroom.topic,
         id: @chatroom.id,
-        user_count: @chatroom.users.uniq.count
+        user_count: @chatroom.users.uniq.count,
+        lock: @chatroom.is_private?
       redirect_to root_path
     else
       flash[:error] = @chatroom.errors.full_messages.join(',')
