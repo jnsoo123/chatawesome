@@ -1,5 +1,5 @@
 class Chatroom < ApplicationRecord
-  has_secure_password(validations: false)
+  has_secure_password validations: false
   # has_secure_password validations: true, on: :update_password
 
   has_many :messages, dependent: :destroy
