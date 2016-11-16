@@ -1,6 +1,7 @@
 <div class="container" style="max-width: 500px;">
   <div class="well">
     <h3 class="text-center">Chat System Login</h3>
+    <%= render partial: 'shared/alert_messages' %>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-group">
         <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'your@email.com' %>
