@@ -80,8 +80,6 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
-  
-  ENV["REDISTOGO_URL"] = 'redis://redistogo:7f86431246ef65f8577b2d184990a854@crestfish.redistogo.com:10552/'
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
