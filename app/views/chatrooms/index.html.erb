@@ -3,7 +3,7 @@
   <div id="all_channels">
     <% @chatrooms.each do |chatroom| %>
       <div class="col-xs-12" style="margin-bottom: 5px;">
-        <%= link_to chatroom_lock_or_unlocked_path(chatroom), class: 'btn btn-primary', style: 'width: 100%;', remote: chatroom.is_private? do %>
+        <%= link_to chatroom_lock_or_unlocked_path(chatroom), class: 'btn btn-default', style: 'width: 100%;', remote: chatroom.is_private? do %>
           <div class="clearfix">
             <span class="pull-left"><%= "##{chatroom.topic} ( #{chatroom.users.uniq.count} #{icon('user')} )".html_safe %></span>
             <span class="pull-right"><%= icon('lock') if chatroom.is_private? %></span>
