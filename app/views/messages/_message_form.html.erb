@@ -1,6 +1,11 @@
 <%= form_for message, remote: true, authenticity_token: true do |f| %>
   <%= f.label :your_message %>:
-  <%= f.text_field :body, class: "form-control", id: "message_field_#{current_user.id}", autocomplete: :off, required: true %>
+  <div class="input-group">
+    <%= f.text_field :body, class: "form-control", id: "message_field_#{current_user.id}", autocomplete: :off, required: true %>
+    <span class="input-group-btn">
+      <%= f.submit "Send", class: 'btn btn-success' %>
+    </span>
+  </div>
 
   <%= f.hidden_field :chatroom_id, value: chatroom.id %>
 <%end%>

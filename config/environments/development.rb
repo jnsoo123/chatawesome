@@ -54,4 +54,7 @@ Rails.application.configure do
 
   config.action_cable.url = "ws://chatting-app-jnsoo.c9users.io/cable"
   config.action_cable.allowed_request_origins = ['https://chatting-app-jnsoo.c9users.io']
+ 
+#  config.action_cable.url = "ws://localhost:8000/cable"
+#  config.action_cable.allowed_request_origins = ['https://localhost:8000']
 end
