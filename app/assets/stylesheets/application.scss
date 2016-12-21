@@ -18,7 +18,7 @@
 @import "font-awesome";
 @import "bootstrap-sprockets";
 
-@import "bootswatch/yeti/variables";
+@import "bootswatch/flatly/variables";
 @import "bootstrap";
 
 // Example using 'Cerulean' bootswatch
@@ -33,4 +33,4 @@
 body { padding-top: 60px; }
 
 // And finally bootswatch style itself
-@import "bootswatch/yeti/bootswatch";
+@import "bootswatch/flatly/bootswatch";

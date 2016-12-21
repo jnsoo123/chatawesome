@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-ruby "2.3.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
@@ -38,6 +37,7 @@ gem 'bcrypt'
 gem 'cancancan', '~> 1.10'
 gem 'heroku'
 gem "figaro"
+gem 'omniauth-facebook'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
