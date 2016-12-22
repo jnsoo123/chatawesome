@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
       ActionCable.server.broadcast 'messages',
         message: message.body,
         user: message.user.name,
-        topic: (message.chat_type == Chatroom ? message.chat.topic : message.chat.id),
+        topic: (message.chat_type == "Chatroom" ? message.chat.topic : message.chat.id),
         user_id: message.user.id
       head :ok
     else
