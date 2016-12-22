@@ -12,7 +12,7 @@
 </div>
 
 <div class="panel panel-default">
-  <% if chatroom.messages.any? %>
+  <% if chatroom.try(:messages).try(:any?) %>
     <div class="panel-body messages" id="messages_<%= chatroom.class == Chatroom ? chatroom.topic : chatroom.id %>">
       <%= render partial: 'messages/message', collection: chatroom.messages.sort, as: :message %>
     </div>
