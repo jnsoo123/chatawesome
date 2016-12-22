@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
       ActionCable.server.broadcast 'messages',
         message: message.body,
         user: message.user.name,
-        topic: message.chatroom.topic,
+        topic: (message.chat_type == Chatroom ? message.chat.topic : message.chat.id),
         user_id: message.user.id
       head :ok
     else
@@ -18,6 +18,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:body, :chatroom_id)
+    params.require(:message).permit(:body, :chat_id, :chat_type)
   end
 end

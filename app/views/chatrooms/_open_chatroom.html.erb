@@ -1,5 +1,5 @@
 <div class="clearfix">
-  <h4 class="text-muted">#<%= chatroom.topic %></h4>
+  <h4 class="text-muted">#<%= chatroom.class == Chatroom ? chatroom.topic : @recipient.name %></h4>
   <% if can? :destroy, chatroom %>
     <h4>
       <% if chatroom.is_private? %>
@@ -13,11 +13,11 @@
 
 <div class="panel panel-default">
   <% if chatroom.messages.any? %>
-    <div class="panel-body messages" id="messages_<%= chatroom.topic %>">
+    <div class="panel-body messages" id="messages_<%= chatroom.class == Chatroom ? chatroom.topic : chatroom.id %>">
       <%= render partial: 'messages/message', collection: chatroom.messages.sort, as: :message %>
     </div>
   <% else %>
-    <div class="panel-body hidden messages" id="messages_<%= chatroom.topic %>">
+    <div class="panel-body hidden messages" id="messages_<%= chatroom.class == Chatroom ? chatroom.topic : chatroom.id %>">
     </div>
   <% end %>
 </div>

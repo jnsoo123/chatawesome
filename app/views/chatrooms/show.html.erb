@@ -1,10 +1,10 @@
-<% if @chatroom.is_private? %>
+<% if @chatroom.try(:is_private?) %>
   <% if session[:chatroom_access] == @chatroom.id %>
-    <%= render partial: 'open_chatroom', locals: { chatroom: @chatroom, message: @message } %>
+    <%= render partial: 'chatrooms/open_chatroom', locals: { chatroom: @chatroom, message: @message } %>
   <% else %>
-    <%= render partial: 'close_chatroom' %>
+    <%= render partial: 'chatrooms/close_chatroom' %>
   <% end %>
 <% else %>
-  <%= render partial: 'open_chatroom', locals: { chatroom: @chatroom, message: @message } %>
+  <%= render partial: 'chatrooms/open_chatroom', locals: { chatroom: @chatroom, message: @message } %>
 <% end %>
 <div id="show_modal"></div>

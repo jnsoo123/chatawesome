@@ -1,20 +1,43 @@
-<h3 class="text-center">Chatrooms</h3>
-<div class="row">
-  <div id="all_channels">
-    <% @chatrooms.each do |chatroom| %>
-      <div class="col-xs-12" style="margin-bottom: 5px;">
-        <%= link_to chatroom_lock_or_unlocked_path(chatroom), class: 'btn btn-primary', style: 'width: 100%;', remote: chatroom.is_private? do %>
-          <div class="clearfix">
-            <span class="pull-left"><%= "##{chatroom.topic} ( #{chatroom.users.uniq.count} #{icon('user')} )".html_safe %></span>
-            <span class="pull-right"><%= icon('lock') if chatroom.is_private? %></span>
+<div class="col-md-6">
+  <div class="well">
+    <h3 class="text-center">Chatrooms</h3>
+    <div class="row">
+      <div id="all_channels">
+        <% @chatrooms.each do |chatroom| %>
+          <div class="col-xs-12" style="margin-bottom: 5px;">
+            <%= link_to chatroom_lock_or_unlocked_path(chatroom), class: 'btn btn-primary', style: 'width: 100%;', remote: chatroom.is_private? do %>
+              <div class="clearfix">
+                <span class="pull-left"><%= "##{chatroom.topic} ( #{chatroom.users.uniq.count} #{icon('user')} )".html_safe %></span>
+                <span class="pull-right"><%= icon('lock') if chatroom.is_private? %></span>
+              </div>
+            <% end %>
           </div>
         <% end %>
       </div>
-    <% end %>
+      <div class="col-xs-12">
+        <%= link_to 'Create Channel', new_chatroom_path, class: 'btn btn-success', style: 'width: 100%;' %>
+      </div>
+    </div>
   </div>
-  <div class="col-xs-12">
-    <%= link_to 'Create Channel', new_chatroom_path, class: 'btn btn-success', style: 'width: 100%;' %>
+</div>
+
+<div class="col-md-6">
+  <div class="well">
+    <h3 class="text-center">PM Users</h3>
+    <div class="row">
+      <% User.where.not(id: current_user.id).each do |user| %>
+        <div class="col-xs-12" style="margin-bottom: 5px;">
+          <%= link_to private_chat_path(user), class: 'btn btn-primary', style: 'width: 100%;' do %>
+            <div class="clearfix">
+              <span class="pull-left"><%= user.name %></span>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 <div id="show_modal">
 </div>
+
+

@@ -11,6 +11,7 @@ class Ability
       can :check_password, Chatroom
       can :show_with_password, Chatroom
       can :create, Chatroom
+      can :private_message, Chatroom
     end
   end
 end
