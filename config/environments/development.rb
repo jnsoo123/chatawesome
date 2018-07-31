@@ -52,9 +52,9 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.action_cable.url = "ws://chatting-app-jnsoo.c9users.io/cable"
-  config.action_cable.allowed_request_origins = ['https://chatting-app-jnsoo.c9users.io']
+#  config.action_cable.url = "ws://chatting-app-jnsoo.c9users.io/cable"
+#  config.action_cable.allowed_request_origins = ['https://chatting-app-jnsoo.c9users.io']
  
-#  config.action_cable.url = "ws://localhost:8000/cable"
-#  config.action_cable.allowed_request_origins = ['https://localhost:8000']
+  config.action_cable.url = "ws://localhost:8000/cable"
+  config.action_cable.allowed_request_origins = ['https://localhost:8000', 'http://localhost:8000']
 end
